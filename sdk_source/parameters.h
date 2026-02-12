@@ -48,7 +48,7 @@
 /******************************************************************************/
 /********************** Macros and Constants Definitions **********************/
 /******************************************************************************/
-#define UART_BAUDRATE 921600
+//#define UART_BAUDRATE 921600
 #ifdef XPAR_AXI_AD9361_0_BASEADDR
 #define AD9361_RX_0_BASEADDR		XPAR_AXI_AD9361_0_BASEADDR
 #define AD9361_TX_0_BASEADDR		XPAR_AXI_AD9361_0_BASEADDR + 0x4000
@@ -82,7 +82,7 @@
 #define ADC_DDR_BASEADDR			XPAR_DDR_MEM_BASEADDR + 0x800000
 #define DAC_DDR_BASEADDR			XPAR_DDR_MEM_BASEADDR + 0xA000000
 
-#define UART_DEVICE_ID			XPAR_XUARTPS_0_DEVICE_ID
+#define UART_DEVICE_ID				XPAR_XUARTPS_0_DEVICE_ID
 #define INTC_DEVICE_ID				XPAR_SCUGIC_SINGLE_DEVICE_ID
 
 #ifdef XPS_BOARD_ZCU102

@@ -60,6 +60,17 @@ module system_top (
   inout                   fixed_io_ps_porb,
   inout                   fixed_io_ps_srstb,
 
+//  output      [ 1: 0]     pl_led,
+   
+  output                  rxd_uart_out,    
+  input                   txd_uart_in,   
+  input                   gps_pps,
+  output                  pps_led,  
+
+  output                  CLK_DAC_SDI,
+  output                  CLK_DAC_CS,
+  output                  CLK_DAC_SCLK,
+    
 //  inout       [ 14:0]     gpio_bd,
 
 //  output                  hdmi_out_clk,
@@ -246,9 +257,18 @@ module system_top (
 
   
   
-
+  assign pps_led      = gps_pps;
 
   system_wrapper i_system_wrapper (
+  
+    .dac_sdi(CLK_DAC_SDI),
+    .dac_cs(CLK_DAC_CS),
+    .dac_sclk(CLK_DAC_SCLK),
+    
+    .UART_1_rxd(txd_uart_in),
+    .UART_1_txd(rxd_uart_out),
+    .gps_pps(gps_pps),
+    
     .ddr_addr (ddr_addr),
     .ddr_ba (ddr_ba),
     .ddr_cas_n (ddr_cas_n),

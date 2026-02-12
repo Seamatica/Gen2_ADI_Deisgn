@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-//Date        : Mon Jan 26 11:26:12 2026
+//Date        : Mon Feb  9 15:48:14 2026
 //Host        : DESKTOP-V4M9N49 running 64-bit major release  (build 9200)
 //Command     : generate_target system_wrapper.bd
 //Design      : system_wrapper
@@ -10,7 +10,12 @@
 `timescale 1 ps / 1 ps
 
 module system_wrapper
-   (ddr_addr,
+   (UART_1_rxd,
+    UART_1_txd,
+    dac_cs,
+    dac_sclk,
+    dac_sdi,
+    ddr_addr,
     ddr_ba,
     ddr_cas_n,
     ddr_ck_n,
@@ -36,6 +41,7 @@ module system_wrapper
     gpio_i,
     gpio_o,
     gpio_t,
+    gps_pps,
     hdmi_data,
     hdmi_data_e,
     hdmi_hsync,
@@ -97,6 +103,11 @@ module system_wrapper
     up_enable_1,
     up_txnrx_0,
     up_txnrx_1);
+  input UART_1_rxd;
+  output UART_1_txd;
+  output dac_cs;
+  output dac_sclk;
+  output dac_sdi;
   inout [14:0]ddr_addr;
   inout [2:0]ddr_ba;
   inout ddr_cas_n;
@@ -123,6 +134,7 @@ module system_wrapper
   input [63:0]gpio_i;
   output [63:0]gpio_o;
   output [63:0]gpio_t;
+  input gps_pps;
   output [23:0]hdmi_data;
   output hdmi_data_e;
   output hdmi_hsync;
@@ -185,6 +197,11 @@ module system_wrapper
   input up_txnrx_0;
   input up_txnrx_1;
 
+  wire UART_1_rxd;
+  wire UART_1_txd;
+  wire dac_cs;
+  wire dac_sclk;
+  wire dac_sdi;
   wire [14:0]ddr_addr;
   wire [2:0]ddr_ba;
   wire ddr_cas_n;
@@ -211,6 +228,7 @@ module system_wrapper
   wire [63:0]gpio_i;
   wire [63:0]gpio_o;
   wire [63:0]gpio_t;
+  wire gps_pps;
   wire [23:0]hdmi_data;
   wire hdmi_data_e;
   wire hdmi_hsync;
@@ -274,7 +292,12 @@ module system_wrapper
   wire up_txnrx_1;
 
   system system_i
-       (.ddr_addr(ddr_addr),
+       (.UART_1_rxd(UART_1_rxd),
+        .UART_1_txd(UART_1_txd),
+        .dac_cs(dac_cs),
+        .dac_sclk(dac_sclk),
+        .dac_sdi(dac_sdi),
+        .ddr_addr(ddr_addr),
         .ddr_ba(ddr_ba),
         .ddr_cas_n(ddr_cas_n),
         .ddr_ck_n(ddr_ck_n),
@@ -300,6 +323,7 @@ module system_wrapper
         .gpio_i(gpio_i),
         .gpio_o(gpio_o),
         .gpio_t(gpio_t),
+        .gps_pps(gps_pps),
         .hdmi_data(hdmi_data),
         .hdmi_data_e(hdmi_data_e),
         .hdmi_hsync(hdmi_hsync),
